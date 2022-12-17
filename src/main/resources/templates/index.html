@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/styles/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <div class="list-container" th:fragment="header">
+        <ul>
+            <li><a href="/">SQL</a></li>
+            <li><a href="/films">FilmCollection</a></li>
+            <li><a href="/filmsubs">FilmSubs</a></li>
+            <li><a href="/genres">Genres</a></li>
+            <li><a href="/producers">Producers</a></li>
+            <li><a href="/scriptwriters">ScriptWriters</a></li>
+            <li><a href="/subs">Subs</a></li>
+            <li><a href="/visitorsubs">SubsOfVisitors</a></li>
+            <li><a href="/visitors">Visitors</a></li>
+            <li><a href="/voices">Voices</a></li>
+            <li><a href="/filmvoices">VoicesOfFilms</a></li>
+        </ul>
+    </div>
+
+<!--    <p th:text="'Hello, ' + ${title} + '!'" />-->
+
+    <div class="forms-wrapper">
+        <form th:action="@{/}" method="POST" enctype="multipart/form-data" id="usrinput">
+            <div class="text-wrapper">
+                <div>
+                    <h2>Write your SQL query here...</h2>
+                    <textarea placeholder="INSERT INTO..." rows="20" name="val" id="sql_query" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+                </div>
+                <div>
+                    <h2>Result</h2>
+                    <textarea th:text="${result}" placeholder="Your result..." rows="20" name="result" id="sql_result" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+                </div>
+            </div>
+            <div class="button-holder">
+                <button class="button-9" role="button" type="submit">Run</button>
+            </div>
+        </form>
+    </div>
+
+
+    <footer>
+        <div class="footer" th:fragment="footer">
+            <p>Alina Seikauskaite TV-13</p>
+            <p>Mark Rufin-Zavhorodnii TV-13</p>
+        </div>
+    </footer>
+</body>
+</html>

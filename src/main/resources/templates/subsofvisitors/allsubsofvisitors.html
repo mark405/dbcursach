@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>All visitorsubs</title>
+    <link th:href="@{/styles/css/table.css}" rel="stylesheet" />
+    <link th:href="@{/styles/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <div th:insert="index :: header"></div>
+    <h1 class="table-name">SubsOfVisitors</h1>
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>SubID</th>
+            <th>VisitorID</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="visitorsub : ${visitorsubs}">
+            <td th:text="${visitorsub.getSubId()}">sub</td>
+            <td th:text="${sub.getVisitorId()}">visitor</td>
+            <td th:text="${sub.getStart()}">start</td>
+            <td th:text="${sub.getEnd()}">end</td>
+            <td th:text="${sub.getStatus()}">status</td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="button-holder">
+        <button class="button-9" role="button">Add</button>
+    </div>
+
+    <footer>
+        <div th:insert="index :: footer"></div>
+    </footer>
+
+</body>
+</html>
