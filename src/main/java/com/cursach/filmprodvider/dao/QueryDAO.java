@@ -35,7 +35,7 @@ public class QueryDAO {
         try {
             Statement statement = connection.createStatement();
             //String SQL = "SELECT * FROM FilmSubs";
-            statement.executeUpdate(SQL);
+            statement.execute(SQL);
 
             return "OK";
         } catch (SQLException e) {
