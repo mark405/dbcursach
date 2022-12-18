@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Delete voice</title>
+    <link th:href="@{/styles/css/form.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Voice</h2>
+    <form th:action="@{/voices/deletevoice}" method="POST" enctype="multipart/form-data" id="usrinput">
+        <div class="user-box">
+            <input type="text" name="id" required="true">
+            <label>ID</label>
+        </div>
+        <button role="button" type="submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+        </button>
+    </form>
+</div>
+
+
+</body>
+</html>

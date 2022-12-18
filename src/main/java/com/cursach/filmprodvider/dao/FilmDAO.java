@@ -11,27 +11,7 @@ import java.util.List;
  * @author mark
  */
 @Component
-public class FilmDAO {
-    private static final String URL = "jdbc:mysql://localhost:3306/curs";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Zakazaka12345";
-
-    private static Connection connection;
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
+public class FilmDAO extends TableBaseDao{
 
     public List<Film> index() {
         List<Film> films = new ArrayList<>();
@@ -65,6 +45,45 @@ public class FilmDAO {
         }
 
         return films;
+    }
+
+    public void add(String title, String genre, String duration, String year, String rating, String cash, String episodes, String seasons, String producer, String scriptwriter, String description) {
+        try {
+            String SQL = "INSERT INTO FilmCollection(Title, Genre, Duration, IssueYear, Rate, Cash, Episodes, Seasons, Producer, ScriptWriter, Description) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";//insert
+
+            PreparedStatement statement = connection.prepareStatement(SQL);
+
+            statement.setString(1, title);
+            statement.setString(2, genre);
+            statement.setString(3, duration);
+            statement.setString(4, year);
+            statement.setString(5, rating);
+            statement.setString(6, cash);
+            statement.setString(7, episodes);
+            statement.setString(8, seasons);
+            statement.setString(9, producer);
+            statement.setString(10, scriptwriter);
+            statement.setString(11, description);
+
+
+            statement.addBatch();
+
+            statement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(String id) {
+        try {
+            String SQL = "DELETE FROM FilmCollection WHERE FilmID = " + id;//insert
+
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(SQL);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
 

@@ -1,11 +1,13 @@
 package com.cursach.filmprodvider.controllers;
 
 import com.cursach.filmprodvider.dao.FilmSubDAO;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -28,9 +30,33 @@ public class FilmSubController {
         return "filmsubs/allfilmsubs";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        return null;
+    @GetMapping("/addfilmsub")
+    public String addGenre(Model model) {
+        return "filmsubs/addfilmsub";
+    }
+    @PostMapping("/addfilmsub")
+    public String addGenre(Model model, HttpServletRequest request) {
+        String filmID = request.getParameter("filmid");
+        String subID = request.getParameter("subid");
+
+
+        filmSubDAO.add(filmID, subID);
+        System.out.println(filmID);
+        return "redirect:/filmsubs";
+    }
+
+    @GetMapping("/deletefilmsub")
+    public String deleteFilmSub(Model model) {
+        return "filmsubs/deletefilmsub";
+    }
+    @PostMapping("/deletefilmsub")
+    public String deleteGenre(Model model, HttpServletRequest request) {
+        String filmid = request.getParameter("filmid");
+        String subid = request.getParameter("subid");
+
+
+        filmSubDAO.delete(filmid, subid);
+        return "redirect:/filmsubs";
     }
 }
 

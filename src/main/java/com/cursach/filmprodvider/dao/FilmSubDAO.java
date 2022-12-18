@@ -11,27 +11,8 @@ import java.util.List;
  * @author mark
  */
 @Component
-public class FilmSubDAO {
-    private static final String URL = "jdbc:mysql://localhost:3306/curs";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Zakazaka12345";
+public class FilmSubDAO extends TableBaseDao {
 
-    private static Connection connection;
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public List<FilmSub> index() {
         List<FilmSub> filmSubs = new ArrayList<>();
@@ -54,5 +35,34 @@ public class FilmSubDAO {
         }
 
         return filmSubs;
+    }
+
+    public void add(String filmID, String subID) {
+        try {
+            String SQL = "INSERT INTO FilmSubs(FilmID, SubID) VALUES(?, ?)";//insert
+
+            PreparedStatement statement = connection.prepareStatement(SQL);
+
+            statement.setString(1, filmID);
+            statement.setString(2, subID);
+
+            statement.addBatch();
+
+            statement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(String filmid, String subid) {
+        try {
+            String SQL = "DELETE FROM FilmSubs WHERE FilmID = " + filmid + " AND SubID = " + subid;//insert
+
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(SQL);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

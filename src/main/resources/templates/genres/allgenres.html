@@ -17,6 +17,7 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,8 +29,10 @@
     </table>
 
     <div class="button-holder">
-        <button class="button-9" role="button">Add</button>
+        <a class="button-9" role="button" href="genres/addgenre">Add</a>
+        <a class="button-9" role="button" href="genres/deletegenre">Delete by ID</a>
     </div>
+
     <footer>
         <div th:insert="index :: footer"></div>
     </footer>

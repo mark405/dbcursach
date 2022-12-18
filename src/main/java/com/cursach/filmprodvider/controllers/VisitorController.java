@@ -2,11 +2,13 @@ package com.cursach.filmprodvider.controllers;
 
 import com.cursach.filmprodvider.dao.GenreDAO;
 import com.cursach.filmprodvider.dao.VisitorDAO;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -29,8 +31,30 @@ public class VisitorController {
         return "visitors/allvisitors";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        return null;
+    @GetMapping("/addvisitor")
+    public String addGenre(Model model) {
+        return "visitors/addvisitor";
+    }
+    @PostMapping("/addvisitor")
+    public String addGenre(Model model, HttpServletRequest request) {
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String genre = request.getParameter("genre");
+
+        visitorDAO.add(name, surname, genre);
+
+        return "redirect:/visitors";
+    }
+
+    @GetMapping("/deletevisitor")
+    public String deleteVisitor(Model model) {
+        return "visitors/deletevisitor";
+    }
+    @PostMapping("/deletevisitor")
+    public String deleteVisitor(Model model, HttpServletRequest request) {
+        String id = request.getParameter("id");
+
+        visitorDAO.delete(id);
+        return "redirect:/visitors";
     }
 }

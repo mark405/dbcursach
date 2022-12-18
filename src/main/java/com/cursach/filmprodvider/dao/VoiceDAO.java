@@ -11,27 +11,7 @@ import java.util.List;
  * @author mark
  */
 @Component
-public class VoiceDAO {
-    private static final String URL = "jdbc:mysql://localhost:3306/curs";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Zakazaka12345";
-
-    private static Connection connection;
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
+public class VoiceDAO extends TableBaseDao {
 
     public List<Voice> index() {
         List<Voice> voices = new ArrayList<>();
@@ -55,5 +35,34 @@ public class VoiceDAO {
         }
 
         return voices;
+    }
+
+    public void add(final String title, final String lang) {
+        try {
+            String SQL = "INSERT INTO Voices(Title, Lang) VALUES(?, ?)";//insert
+
+            PreparedStatement statement = connection.prepareStatement(SQL);
+
+            statement.setString(1, title);
+            statement.setString(2, lang);
+
+            statement.addBatch();
+
+            statement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(String id) {
+        try {
+            String SQL = "DELETE FROM Voices WHERE VoicesID = " + id;//insert
+
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(SQL);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

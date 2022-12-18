@@ -19,7 +19,7 @@ public class FilmVoice {
         return filmId;
     }
 
-    public int getVoiceID() {
+    public int getVoiceId() {
         return voiceId;
     }
 }

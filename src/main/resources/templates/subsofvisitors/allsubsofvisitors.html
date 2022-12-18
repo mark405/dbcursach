@@ -23,21 +23,25 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="visitorsub : ${visitorsubs}">
+        <tr th:each="visitorsub : ${subsofvisitors}">
             <td th:text="${visitorsub.getSubId()}">sub</td>
-            <td th:text="${sub.getVisitorId()}">visitor</td>
-            <td th:text="${sub.getStart()}">start</td>
-            <td th:text="${sub.getEnd()}">end</td>
-            <td th:text="${sub.getStatus()}">status</td>
+            <td th:text="${visitorsub.getVisitorId()}">visitor</td>
+            <td th:text="${visitorsub.getStart()}">start</td>
+            <td th:text="${visitorsub.getEnd()}">end</td>
+            <td th:text="${visitorsub.getStatus()}">status</td>
 
         </tr>
         </tbody>
     </table>
 
-    <div class="button-holder">
-        <button class="button-9" role="button">Add</button>
-    </div>
 
+
+
+    <div class="button-holder">
+        <a class="button-9" role="button" href="subsofvisitors/addsubofvisitor">Add</a>
+        <a class="button-9" role="button" href="subsofvisitors/deletesubofvisitor">Delete by ID</a>
+
+    </div>
     <footer>
         <div th:insert="index :: footer"></div>
     </footer>

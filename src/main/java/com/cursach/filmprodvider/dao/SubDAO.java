@@ -12,28 +12,7 @@ import java.util.List;
  * @author mark
  */
 @Component
-public class SubDAO {
-
-    private static final String URL = "jdbc:mysql://localhost:3306/curs";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Zakazaka12345";
-
-    private static Connection connection;
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
+public class SubDAO extends TableBaseDao {
 
     public List<Sub> index() {
         List<Sub> subs = new ArrayList<>();
@@ -57,5 +36,34 @@ public class SubDAO {
         }
 
         return subs;
+    }
+
+    public void add(final String type, final double price) {
+        try {
+            String SQL = "INSERT INTO Subs(TypeOfSub, Price) VALUES(?, ?)";//insert
+
+            PreparedStatement statement = connection.prepareStatement(SQL);
+
+            statement.setString(1, type);
+            statement.setDouble(2, price);
+
+            statement.addBatch();
+
+            statement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(String id) {
+        try {
+            String SQL = "DELETE FROM Subs WHERE SubID = " + id;//insert
+
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(SQL);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,12 +1,12 @@
 package com.cursach.filmprodvider.controllers;
 
 import com.cursach.filmprodvider.dao.GenreDAO;
+import com.cursach.filmprodvider.models.Genre;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author mark
@@ -28,8 +28,39 @@ public class GenreController {
         return "genres/allgenres";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        return null;
+//    @PostMapping
+//    public String deleteGenre(Model model, HttpServletRequest request) {
+//        String id = request.getParameter("id");
+//        req.get
+//        System.out.println(id);
+//        genreDAO.delete(id);
+//        return "redirect:/genres";
+//    }
+
+    @GetMapping("/addgenre")
+    public String addGenre(Model model) {
+        return "genres/addgenre";
     }
+    @PostMapping("/addgenre")
+    public String addGenre(Model model, HttpServletRequest request) {
+        String name = request.getParameter("name");
+
+        genreDAO.add(name);
+        System.out.println(name);
+        return "redirect:/genres";
+    }
+
+    @GetMapping("/deletegenre")
+    public String deleteGenre(Model model) {
+        return "genres/deletegenre";
+    }
+    @PostMapping("/deletegenre")
+    public String deleteGenre(Model model, HttpServletRequest request) {
+        String id = request.getParameter("id");
+
+        genreDAO.delete(id);
+        return "redirect:/genres";
+    }
+
+
 }

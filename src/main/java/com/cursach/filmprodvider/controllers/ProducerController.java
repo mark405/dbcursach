@@ -2,11 +2,13 @@ package com.cursach.filmprodvider.controllers;
 
 import com.cursach.filmprodvider.dao.GenreDAO;
 import com.cursach.filmprodvider.dao.ProducerDAO;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -29,8 +31,30 @@ public class ProducerController {
         return "producers/allproducers";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        return null;
+    @GetMapping("/addproducer")
+    public String addGenre(Model model) {
+        return "producers/addproducer";
     }
+    @PostMapping("/addproducer")
+    public String addGenre(Model model, HttpServletRequest request) {
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+
+        producerDAO.add(name, surname);
+
+        return "redirect:/producers";
+    }
+
+    @GetMapping("/deleteproducer")
+    public String deleteProducer(Model model) {
+        return "producers/deleteproducer";
+    }
+    @PostMapping("/deleteproducer")
+    public String deleteProducer(Model model, HttpServletRequest request) {
+        String id = request.getParameter("id");
+
+        producerDAO.delete(id);
+        return "redirect:/producers";
+    }
+
 }

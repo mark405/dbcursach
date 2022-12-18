@@ -2,11 +2,13 @@ package com.cursach.filmprodvider.controllers;
 
 import com.cursach.filmprodvider.dao.SubDAO;
 import com.cursach.filmprodvider.dao.VoiceDAO;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -29,8 +31,30 @@ public class VoiceController {
         return "voices/allvoices";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        return null;
+    @GetMapping("/addvoice")
+    public String addGenre(Model model) {
+        return "voices/addvoice";
+    }
+    @PostMapping("/addvoice")
+    public String addGenre(Model model, HttpServletRequest request) {
+        String title = request.getParameter("title");
+        String lang = request.getParameter("lang");
+
+
+        voiceDAO.add(title, lang);
+
+        return "redirect:/voices";
+    }
+
+    @GetMapping("/deletevoice")
+    public String deleteVoice(Model model) {
+        return "voices/deletevoice";
+    }
+    @PostMapping("/deletevoice")
+    public String deleteVoice(Model model, HttpServletRequest request) {
+        String id = request.getParameter("id");
+
+        voiceDAO.delete(id);
+        return "redirect:/voices";
     }
 }

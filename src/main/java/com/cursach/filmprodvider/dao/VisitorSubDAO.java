@@ -12,27 +12,7 @@ import java.util.List;
  * @author mark
  */
 @Component
-public class VisitorSubDAO {
-    private static final String URL = "jdbc:mysql://localhost:3306/curs";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Zakazaka12345";
-
-    private static Connection connection;
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
+public class VisitorSubDAO extends TableBaseDao {
 
     public List<VisitorSub> index() {
         List<VisitorSub> visitorSubs = new ArrayList<>();
@@ -59,5 +39,38 @@ public class VisitorSubDAO {
         }
 
         return visitorSubs;
+    }
+
+    public void add(final String subId, final String visitorId, final String start, final String end, final String status) {
+        try {
+            String SQL = "INSERT INTO SubsOfVisitors(subID, visitorID, StartOfSub, EndOfSub, StatusOfSub) VALUES(?, ?, ?, ?, ?)";//insert
+
+            PreparedStatement statement = connection.prepareStatement(SQL);
+
+            statement.setString(1, subId);
+            statement.setString(2, visitorId);
+            statement.setString(3, start);
+            statement.setString(4, end);
+            statement.setString(5, visitorId);
+
+
+            statement.addBatch();
+
+            statement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(String subid, String visitorid) {
+        try {
+            String SQL = "DELETE FROM SubsOfVisitors WHERE SubID = " + subid + " AND VisitorID = " + visitorid;//insert
+
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(SQL);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -30,11 +30,11 @@ public class VisitorSub {
         this.status = status;
     }
 
-    public int getSubID() {
+    public int getSubId() {
         return SubID;
     }
 
-    public int getVisitorID() {
+    public int getVisitorId() {
         return VisitorID;
     }
 

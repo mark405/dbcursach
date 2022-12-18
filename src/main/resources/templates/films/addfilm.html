@@ -1,0 +1,74 @@
+
+
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add film</title>
+    <link th:href="@{/styles/css/form.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Film</h2>
+    <form th:action="@{/films/addfilm}" method="POST" enctype="multipart/form-data" id="usrinput">
+        <div class="user-box">
+            <input type="text" name="title" required="true">
+            <label>Title</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="genre" required="true">
+            <label>Genre</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="duration" required="true">
+            <label>Duration</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="year" required="true">
+            <label>Year</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="rating" required="true">
+            <label>Rating</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="cash" required="true">
+            <label>Cash</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="episodes" required="true">
+            <label>Episodes</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="seasons" required="true">
+            <label>Seasons</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="producer" required="true">
+            <label>Producer</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="scriptwriter" required="true">
+            <label>Scriptwriter</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="description" required="true">
+            <label>Description</label>
+        </div>
+        <button role="button" type="submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+        </button>
+    </form>
+</div>
+
+
+</body>
+</html>

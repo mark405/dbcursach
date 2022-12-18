@@ -11,28 +11,7 @@ import java.util.List;
  * @author mark
  */
 @Component
-public class GenreDAO {
-
-    private static final String URL = "jdbc:mysql://localhost:3306/curs";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Zakazaka12345";
-
-    private static Connection connection;
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
+public class GenreDAO extends TableBaseDao{
 
     public List<Genre> index() {
         List<Genre> genres = new ArrayList<>();
@@ -57,4 +36,31 @@ public class GenreDAO {
         return genres;
     }
 
+    public void add(final String name) {
+        try {
+            String SQL = "INSERT INTO Genres(Name) VALUES(?)";//insert
+
+            PreparedStatement statement = connection.prepareStatement(SQL);
+
+            statement.setString(1, name);
+
+            statement.addBatch();
+
+            statement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(String id) {
+        try {
+            String SQL = "DELETE FROM Genres WHERE GenreID = " + id;//insert
+
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(SQL);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -2,11 +2,13 @@ package com.cursach.filmprodvider.controllers;
 
 import com.cursach.filmprodvider.dao.FilmDAO;
 import com.cursach.filmprodvider.dao.FilmVoiceDAO;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -28,8 +30,40 @@ public class FilmController {
         return "films/allfilms";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        return null;
+    @GetMapping("/addfilm")
+    public String addGenre(Model model) {
+        return "films/addfilm";
+    }
+    @PostMapping("/addfilm")
+    public String addGenre(Model model, HttpServletRequest request) {
+        String title = request.getParameter("title");
+        String genre = request.getParameter("genre");
+        String duration = request.getParameter("duration");
+        String year = request.getParameter("year");
+        String rating = request.getParameter("rating");
+        String cash = request.getParameter("cash");
+        String episodes = request.getParameter("episodes");
+        String seasons = request.getParameter("seasons");
+        String producer = request.getParameter("producer");
+        String scriptwriter = request.getParameter("scriptwriter");
+        String description = request.getParameter("description");
+
+
+
+        filmDAO.add(title, genre, duration, year, rating, cash, episodes, seasons, producer, scriptwriter, description);
+
+        return "redirect:/films";
+    }
+
+    @GetMapping("/deletefilm")
+    public String deleteFilm(Model model) {
+        return "films/deletefilm";
+    }
+    @PostMapping("/deletefilm")
+    public String deleteFilm(Model model, HttpServletRequest request) {
+        String id = request.getParameter("id");
+
+        filmDAO.delete(id);
+        return "redirect:/films";
     }
 }
