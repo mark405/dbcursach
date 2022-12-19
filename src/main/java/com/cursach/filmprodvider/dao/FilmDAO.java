@@ -85,5 +85,141 @@ public class FilmDAO extends TableBaseDao{
             e.printStackTrace();
         }
     }
+
+    public List<Film> sortByRating() {
+        List<Film> films = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "SELECT * FROM FilmCollection ORDER BY Rate";
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+            while(resultSet.next()) {
+                Film film = new Film();
+
+                film.setId(resultSet.getInt("FilmID"));
+                film.setTitle(resultSet.getString("Title"));
+                film.setGenre(resultSet.getInt("Genre"));
+                film.setDuration(resultSet.getString("Duration"));
+                film.setYear(resultSet.getString("IssueYear"));
+                film.setRate(resultSet.getInt("Rate"));
+                film.setCash(resultSet.getInt("Cash"));
+                film.setEpisodes(resultSet.getInt("Episodes"));
+                film.setSeasons(resultSet.getInt("Seasons"));
+                film.setProducer(resultSet.getInt("Producer"));
+                film.setScriptWriter(resultSet.getInt("ScriptWriter"));
+                film.setDescription(resultSet.getString("Description"));
+
+
+                films.add(film);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return films;
+    }
+
+    public Object sortByCash() {
+        List<Film> films = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "SELECT * FROM FilmCollection ORDER BY Cash";
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+            while(resultSet.next()) {
+                Film film = new Film();
+
+                film.setId(resultSet.getInt("FilmID"));
+                film.setTitle(resultSet.getString("Title"));
+                film.setGenre(resultSet.getInt("Genre"));
+                film.setDuration(resultSet.getString("Duration"));
+                film.setYear(resultSet.getString("IssueYear"));
+                film.setRate(resultSet.getInt("Rate"));
+                film.setCash(resultSet.getInt("Cash"));
+                film.setEpisodes(resultSet.getInt("Episodes"));
+                film.setSeasons(resultSet.getInt("Seasons"));
+                film.setProducer(resultSet.getInt("Producer"));
+                film.setScriptWriter(resultSet.getInt("ScriptWriter"));
+                film.setDescription(resultSet.getString("Description"));
+
+
+                films.add(film);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return films;
+    }
+
+    public Object sortByDescRating() {
+        List<Film> films = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "SELECT * FROM FilmCollection ORDER BY Rate DESC";
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+            while(resultSet.next()) {
+                Film film = new Film();
+
+                film.setId(resultSet.getInt("FilmID"));
+                film.setTitle(resultSet.getString("Title"));
+                film.setGenre(resultSet.getInt("Genre"));
+                film.setDuration(resultSet.getString("Duration"));
+                film.setYear(resultSet.getString("IssueYear"));
+                film.setRate(resultSet.getInt("Rate"));
+                film.setCash(resultSet.getInt("Cash"));
+                film.setEpisodes(resultSet.getInt("Episodes"));
+                film.setSeasons(resultSet.getInt("Seasons"));
+                film.setProducer(resultSet.getInt("Producer"));
+                film.setScriptWriter(resultSet.getInt("ScriptWriter"));
+                film.setDescription(resultSet.getString("Description"));
+
+
+                films.add(film);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return films;
+    }
+
+    public Object sortByDescCash() {
+        List<Film> films = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "SELECT * FROM FilmCollection ORDER BY Cash DESC";
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+            while(resultSet.next()) {
+                Film film = new Film();
+
+                film.setId(resultSet.getInt("FilmID"));
+                film.setTitle(resultSet.getString("Title"));
+                film.setGenre(resultSet.getInt("Genre"));
+                film.setDuration(resultSet.getString("Duration"));
+                film.setYear(resultSet.getString("IssueYear"));
+                film.setRate(resultSet.getInt("Rate"));
+                film.setCash(resultSet.getInt("Cash"));
+                film.setEpisodes(resultSet.getInt("Episodes"));
+                film.setSeasons(resultSet.getInt("Seasons"));
+                film.setProducer(resultSet.getInt("Producer"));
+                film.setScriptWriter(resultSet.getInt("ScriptWriter"));
+                film.setDescription(resultSet.getString("Description"));
+
+
+                films.add(film);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return films;
+    }
 }
 

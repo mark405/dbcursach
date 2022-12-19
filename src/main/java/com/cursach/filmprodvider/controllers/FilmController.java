@@ -66,4 +66,28 @@ public class FilmController {
         filmDAO.delete(id);
         return "redirect:/films";
     }
+
+    @GetMapping("/sortedbyratefilms")
+    public String sortByRating(Model model) {
+        model.addAttribute("films", filmDAO.sortByRating());
+        return "films/allfilms";
+    }
+
+    @GetMapping("/sortedbydescratefilms")
+    public String sortByDescRating(Model model) {
+        model.addAttribute("films", filmDAO.sortByDescRating());
+        return "films/allfilms";
+    }
+
+    @GetMapping("/sortedbycashfilms")
+    public String sortByCash(Model model) {
+        model.addAttribute("films", filmDAO.sortByCash());
+        return "films/allfilms";
+    }
+
+    @GetMapping("/sortedbydesccashfilms")
+    public String sortByDescCash(Model model) {
+        model.addAttribute("films", filmDAO.sortByDescCash());
+        return "films/allfilms";
+    }
 }

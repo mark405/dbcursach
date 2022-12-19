@@ -12,6 +12,16 @@
 <body>
     <div th:insert="index :: header"></div>
     <h1 class="table-name">FilmCollection</h1>
+    <div class="dropdown">
+        <button class="button-sort">Sort</button>
+        <div class="dropdown-options">
+            <a href="films/sortedbyratefilms">By rating</a>
+            <a href="films/sortedbydescratefilms">By desc rating</a>
+            <a href="films/sortedbycashfilms">By cash</a>
+            <a href="films/sortedbydesccashfilms">By desc cash</a>
+
+        </div>
+    </div>
     <table class="styled-table">
         <thead>
         <tr>

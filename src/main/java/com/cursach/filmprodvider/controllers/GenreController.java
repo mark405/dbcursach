@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+
 /**
  * @author mark
  */
@@ -42,11 +44,11 @@ public class GenreController {
         return "genres/addgenre";
     }
     @PostMapping("/addgenre")
-    public String addGenre(Model model, HttpServletRequest request) {
+    public String addGenre(Model model, HttpServletRequest request) throws SQLException {
         String name = request.getParameter("name");
 
         genreDAO.add(name);
-        System.out.println(name);
+
         return "redirect:/genres";
     }
 
