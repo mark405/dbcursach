@@ -16,12 +16,14 @@
     <h2>Sub</h2>
     <form th:action="@{/subsofvisitors/addsubofvisitor}" method="POST" enctype="multipart/form-data" id="usrinput">
         <div class="user-box">
-            <input type="text" name="subid" required="true">
-            <label>SubID</label>
+            <select name="subid">
+                <option th:each="sub : ${subs}" th:value="${sub.getId()}" th:text="${sub.getType()}"></option>
+            </select>
         </div>
         <div class="user-box">
-            <input type="text" name="visitorid" required="true">
-            <label>VisitorID</label>
+            <select name="visitorid">
+                <option th:each="visitor : ${visitors}" th:value="${visitor.getId()}" th:text="${visitor.getName()}"></option>
+            </select>
         </div>
         <div class="user-box">
             <input type="text" name="start" required="true">

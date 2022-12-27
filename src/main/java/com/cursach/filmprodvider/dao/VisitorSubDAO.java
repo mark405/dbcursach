@@ -19,14 +19,19 @@ public class VisitorSubDAO extends TableBaseDao {
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM SubsOfVisitors";
+            String SQL = "SELECT Subs.TypeOfSub, Visitors.Surname, StartOfSub, EndOfSub, StatusOfSub\n" +
+                    "FROM SubsOfVisitors\n" +
+                    "INNER JOIN Subs ON\n" +
+                    "SubsOfVisitors.SubID = Subs.SubID\n" +
+                    "INNER JOIN Visitors ON\n" +
+                    "SubsOfVisitors.VisitorID = Visitors.VisitorID";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while (resultSet.next()) {
                 VisitorSub visitorSub = new VisitorSub();
 
-                visitorSub.setSubID(resultSet.getInt("SubID"));
-                visitorSub.setVisitorID(resultSet.getInt("VisitorID"));
+                visitorSub.setSub(resultSet.getString("Subs.TypeOfSub"));
+                visitorSub.setVisitor(resultSet.getString("Visitors.Surname"));
                 visitorSub.setStart(resultSet.getString("StartOfSub"));
                 visitorSub.setEnd(resultSet.getString("EndOfSub"));
                 visitorSub.setStatus(resultSet.getString("StatusOfSub"));
@@ -51,7 +56,7 @@ public class VisitorSubDAO extends TableBaseDao {
             statement.setString(2, visitorId);
             statement.setString(3, start);
             statement.setString(4, end);
-            statement.setString(5, visitorId);
+            statement.setString(5, status);
 
 
             statement.addBatch();

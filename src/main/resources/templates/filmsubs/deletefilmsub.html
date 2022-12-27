@@ -14,13 +14,23 @@
     <h2>Film sub</h2>
     <form th:action="@{/filmsubs/deletefilmsub}" method="POST" enctype="multipart/form-data" id="usrinput">
         <div class="user-box">
-            <input type="text" name="filmid" required="true">
-            <label>FilmID</label>
+            <select name="filmid">
+                <option th:each="film : ${films}" th:value="${film.getId()}" th:text="${film.getId()}"></option>
+            </select>
         </div>
         <div class="user-box">
-            <input type="text" name="subid" required="true">
-            <label>SubID</label>
+            <select name="subid">
+                <option th:each="sub : ${subs}" th:value="${sub.getId()}" th:text="${sub.getId()}"></option>
+            </select>
         </div>
+<!--        <div class="user-box">-->
+<!--            <input type="text" name="filmid" required="true">-->
+<!--            <label>FilmID</label>-->
+<!--        </div>-->
+<!--        <div class="user-box">-->
+<!--            <input type="text" name="subid" required="true">-->
+<!--            <label>SubID</label>-->
+<!--        </div>-->
         <button role="button" type="submit">
             <span></span>
             <span></span>

@@ -4,18 +4,18 @@ package com.cursach.filmprodvider.models;
  * @author mark
  */
 public class VisitorSub {
-    private int SubID;
-    private int VisitorID;
+    private String sub;
+    private String visitor;
     private String start;
     private String end;
     private String status;
 
-    public void setSubID(int subID) {
-        SubID = subID;
+    public void setSub(String sub) {
+        this.sub = sub;
     }
 
-    public void setVisitorID(int visitorID) {
-        VisitorID = visitorID;
+    public void setVisitor(String visitor) {
+        this.visitor = visitor;
     }
 
     public void setStart(final String start) {
@@ -30,12 +30,12 @@ public class VisitorSub {
         this.status = status;
     }
 
-    public int getSubId() {
-        return SubID;
+    public String getSub() {
+        return sub;
     }
 
-    public int getVisitorId() {
-        return VisitorID;
+    public String getVisitor() {
+        return visitor;
     }
 
     public String getStart() {

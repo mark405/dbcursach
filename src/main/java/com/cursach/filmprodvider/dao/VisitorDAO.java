@@ -18,16 +18,19 @@ public class VisitorDAO extends TableBaseDao{
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM Visitors";
+            String SQL = "SELECT VisitorID, Visitors.Name, Surname, Genres.Name\n" +
+                    "FROM Visitors\n" +
+                    "INNER JOIN Genres ON\n" +
+                    "Visitors.FavGenre = Genres.GenreID";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while (resultSet.next()) {
                 Visitor visitor = new Visitor();
 
                 visitor.setId(resultSet.getInt("VisitorID"));
-                visitor.setName(resultSet.getString("Name"));
+                visitor.setName(resultSet.getString("Visitors.Name"));
                 visitor.setSurname(resultSet.getString("Surname"));
-                visitor.setGenre(resultSet.getInt("FavGenre"));
+                visitor.setGenre(resultSet.getString("Genres.Name"));
 
                 visitors.add(visitor);
             }

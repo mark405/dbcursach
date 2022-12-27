@@ -4,22 +4,22 @@ package com.cursach.filmprodvider.models;
  * @author mark
  */
 public class FilmVoice {
-    private int filmId;
-    private int voiceId;
+    private String film;
+    private String voice;
 
-    public void setFilmId(int filmId) {
-        this.filmId = filmId;
+    public void setFilm(String film) {
+        this.film = film;
     }
 
-    public void setVoiceId(int voiceId) {
-        this.voiceId = voiceId;
+    public void setVoice(String voice) {
+        this.voice = voice;
     }
 
-    public int getFilmId() {
-        return filmId;
+    public String getFilm() {
+        return film;
     }
 
-    public int getVoiceId() {
-        return voiceId;
+    public String getVoice() {
+        return voice;
     }
 }

@@ -6,15 +6,15 @@ package com.cursach.filmprodvider.models;
 public class Film {
     private int id;
     private String title;
-    private int genre;
+    private String genre;
     private String duration;
     private String year;
     private double rate;
     private int cash;
     private int episodes;
     private int seasons;
-    private int producer;
-    private int scriptWriter;
+    private String producer;
+    private String scriptWriter;
     private String description;
 
     public void setId(int id) {
@@ -25,7 +25,7 @@ public class Film {
         this.title = title;
     }
 
-    public void setGenre(int genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
@@ -53,11 +53,11 @@ public class Film {
         this.seasons = seasons;
     }
 
-    public void setProducer(int producer) {
+    public void setProducer(String producer) {
         this.producer = producer;
     }
 
-    public void setScriptWriter(int scriptWriter) {
+    public void setScriptWriter(String scriptWriter) {
         this.scriptWriter = scriptWriter;
     }
 
@@ -73,7 +73,7 @@ public class Film {
         return title;
     }
 
-    public int getGenre() {
+    public String getGenre() {
         return genre;
     }
 
@@ -101,11 +101,11 @@ public class Film {
         return seasons;
     }
 
-    public int getProducer() {
+    public String getProducer() {
         return producer;
     }
 
-    public int getScriptWriter() {
+    public String getScriptWriter() {
         return scriptWriter;
     }
 

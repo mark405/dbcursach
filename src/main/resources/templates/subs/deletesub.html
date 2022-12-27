@@ -14,8 +14,9 @@
     <h2>Sub</h2>
     <form th:action="@{/subs/deletesub}" method="POST" enctype="multipart/form-data" id="usrinput">
         <div class="user-box">
-            <input type="text" name="id" required="true">
-            <label>ID</label>
+            <select name="id">
+                <option th:each="sub : ${subs}" th:value="${sub.getId()}" th:text="${sub.getId()}"></option>
+            </select>
         </div>
         <button role="button" type="submit">
             <span></span>

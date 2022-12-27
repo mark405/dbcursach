@@ -47,6 +47,7 @@ public class ProducerController {
 
     @GetMapping("/deleteproducer")
     public String deleteProducer(Model model) {
+        model.addAttribute("producers", producerDAO.index());
         return "producers/deleteproducer";
     }
     @PostMapping("/deleteproducer")

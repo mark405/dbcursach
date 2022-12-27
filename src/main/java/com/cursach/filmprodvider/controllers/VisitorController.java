@@ -33,6 +33,8 @@ public class VisitorController {
 
     @GetMapping("/addvisitor")
     public String addGenre(Model model) {
+        GenreDAO genreDAO = new GenreDAO();
+        model.addAttribute("genres", genreDAO.index());
         return "visitors/addvisitor";
     }
     @PostMapping("/addvisitor")
@@ -41,6 +43,8 @@ public class VisitorController {
         String surname = request.getParameter("surname");
         String genre = request.getParameter("genre");
 
+        System.out.println(genre);
+
         visitorDAO.add(name, surname, genre);
 
         return "redirect:/visitors";
@@ -48,6 +52,7 @@ public class VisitorController {
 
     @GetMapping("/deletevisitor")
     public String deleteVisitor(Model model) {
+        model.addAttribute("visitors", visitorDAO.index());
         return "visitors/deletevisitor";
     }
     @PostMapping("/deletevisitor")

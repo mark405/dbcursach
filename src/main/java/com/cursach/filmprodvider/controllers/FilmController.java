@@ -1,13 +1,14 @@
 package com.cursach.filmprodvider.controllers;
 
 import com.cursach.filmprodvider.dao.FilmDAO;
-import com.cursach.filmprodvider.dao.FilmVoiceDAO;
+import com.cursach.filmprodvider.dao.GenreDAO;
+import com.cursach.filmprodvider.dao.ProducerDAO;
+import com.cursach.filmprodvider.dao.ScriptWriterDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,8 +33,16 @@ public class FilmController {
 
     @GetMapping("/addfilm")
     public String addGenre(Model model) {
+        GenreDAO genreDAO = new GenreDAO();
+        ProducerDAO producerDAO = new ProducerDAO();
+        ScriptWriterDAO scriptWriterDAO = new ScriptWriterDAO();
+        model.addAttribute("genres", genreDAO.index());
+        model.addAttribute("producers", producerDAO.index());
+        model.addAttribute("scriptwriters", scriptWriterDAO.index());
+
         return "films/addfilm";
     }
+
     @PostMapping("/addfilm")
     public String addGenre(Model model, HttpServletRequest request) {
         String title = request.getParameter("title");
@@ -49,7 +58,6 @@ public class FilmController {
         String description = request.getParameter("description");
 
 
-
         filmDAO.add(title, genre, duration, year, rating, cash, episodes, seasons, producer, scriptwriter, description);
 
         return "redirect:/films";
@@ -57,8 +65,10 @@ public class FilmController {
 
     @GetMapping("/deletefilm")
     public String deleteFilm(Model model) {
+        model.addAttribute("films", filmDAO.index());
         return "films/deletefilm";
     }
+
     @PostMapping("/deletefilm")
     public String deleteFilm(Model model, HttpServletRequest request) {
         String id = request.getParameter("id");

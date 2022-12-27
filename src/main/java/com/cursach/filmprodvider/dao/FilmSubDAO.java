@@ -19,14 +19,19 @@ public class FilmSubDAO extends TableBaseDao {
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM FilmSubs";
+            String SQL = "SELECT FilmCollection.Title, Subs.TypeOfSub\n" +
+                    "FROM FilmSubs\n" +
+                    "INNER JOIN FilmCollection ON\n" +
+                    "FilmCollection.FilmID = FilmSubs.FilmID\n" +
+                    "INNER JOIN Subs ON\n" +
+                    "Subs.SubID = FilmSubs.SubID";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while(resultSet.next()) {
                 FilmSub filmSub = new FilmSub();
 
-                filmSub.setFilmId(resultSet.getInt("FilmID"));
-                filmSub.setSubId(resultSet.getInt("SubID"));
+                filmSub.setFilm(resultSet.getString("FilmCollection.Title"));
+                filmSub.setSub(resultSet.getString("Subs.TypeOfSub"));
 
                 filmSubs.add(filmSub);
             }

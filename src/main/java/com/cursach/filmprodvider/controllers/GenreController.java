@@ -54,6 +54,7 @@ public class GenreController {
 
     @GetMapping("/deletegenre")
     public String deleteGenre(Model model) {
+        model.addAttribute("genres", genreDAO.index());
         return "genres/deletegenre";
     }
     @PostMapping("/deletegenre")

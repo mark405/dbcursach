@@ -48,6 +48,7 @@ public class VoiceController {
 
     @GetMapping("/deletevoice")
     public String deleteVoice(Model model) {
+        model.addAttribute("voices", voiceDAO.index());
         return "voices/deletevoice";
     }
     @PostMapping("/deletevoice")

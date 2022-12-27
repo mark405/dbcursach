@@ -14,8 +14,9 @@
     <h2>Visitor</h2>
     <form th:action="@{/visitors/deletevisitor}" method="POST" enctype="multipart/form-data" id="usrinput">
         <div class="user-box">
-            <input type="text" name="id" required="true">
-            <label>ID</label>
+            <select name="id">
+                <option th:each="visitor : ${visitors}" th:value="${visitor.getId()}" th:text="${visitor.getId()}"></option>
+            </select>
         </div>
         <button role="button" type="submit">
             <span></span>

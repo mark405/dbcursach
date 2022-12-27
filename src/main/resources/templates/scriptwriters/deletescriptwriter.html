@@ -14,8 +14,9 @@
     <h2>Scriptwriter</h2>
     <form th:action="@{/scriptwriters/deletescriptwriter}" method="POST" enctype="multipart/form-data" id="usrinput">
         <div class="user-box">
-            <input type="text" name="id" required="true">
-            <label>ID</label>
+            <select name="id">
+                <option th:each="scriptwriter : ${scriptwriters}" th:value="${scriptwriter.getId()}" th:text="${scriptwriter.getId()}"></option>
+            </select>
         </div>
         <button role="button" type="submit">
             <span></span>

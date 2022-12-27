@@ -24,8 +24,9 @@
             <label>Surname</label>
         </div>
         <div class="user-box">
-            <input type="text" name="genre" required="true">
-            <label>Genre</label>
+            <select name="genre">
+                <option th:each="genre : ${genres}" th:value="${genre.getId()}" th:text="${genre.getName()}"></option>
+            </select>
         </div>
 
         <button role="button" type="submit">

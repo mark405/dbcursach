@@ -7,7 +7,7 @@ public class Visitor {
     private int id;
     private String name;
     private String surname;
-    private int genre;
+    private String genre;
 
     public void setId(int id) {
         this.id = id;
@@ -21,7 +21,7 @@ public class Visitor {
         this.surname = surname;
     }
 
-    public void setGenre(int genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
@@ -37,7 +37,7 @@ public class Visitor {
         return surname;
     }
 
-    public int getGenre() {
+    public String getGenre() {
         return genre;
     }
 }

@@ -18,14 +18,17 @@ public class FilmVoiceDAO extends TableBaseDao {
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM VoicesOfFilms";
+            String SQL = "SELECT Voices.Title, FilmCollection.Title\n" +
+                    "FROM VoicesOfFilms\n" +
+                    "INNER JOIN FilmCollection ON VoicesOfFilms.FilmID = FilmCollection.FilmID\n" +
+                    "INNER JOIN Voices ON VoicesOfFilms.VoiceID = Voices.VoicesID";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while (resultSet.next()) {
                 FilmVoice filmVoice = new FilmVoice();
 
-                filmVoice.setFilmId(resultSet.getInt("FilmID"));
-                filmVoice.setVoiceId(resultSet.getInt("VoiceID"));
+                filmVoice.setFilm(resultSet.getString("FilmCollection.Title"));
+                filmVoice.setVoice(resultSet.getString("Voices.Title"));
 
                 filmVoices.add(filmVoice);
             }

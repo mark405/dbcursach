@@ -1,6 +1,7 @@
 package com.cursach.filmprodvider.controllers;
 
 import com.cursach.filmprodvider.dao.SubDAO;
+import com.cursach.filmprodvider.dao.VisitorDAO;
 import com.cursach.filmprodvider.dao.VisitorSubDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class VisitorSubController {
 
     @GetMapping("/addsubofvisitor")
     public String addGenre(Model model) {
+        SubDAO subDAO = new SubDAO();
+        VisitorDAO visitorDAO = new VisitorDAO();
+        model.addAttribute("subs", subDAO.index());
+        model.addAttribute("visitors", visitorDAO.index());
         return "subsofvisitors/addsubofvisitor";
     }
     @PostMapping("/addsubofvisitor")
@@ -43,7 +48,7 @@ public class VisitorSubController {
         String end = request.getParameter("end");
         String status = request.getParameter("status");
 
-
+        System.out.println(status);
 
         visitorSubDAO.add(subId, visitorId, start, end, status);
 
@@ -52,6 +57,10 @@ public class VisitorSubController {
 
     @GetMapping("/deletesubofvisitor")
     public String deleteSubOfVisitor(Model model) {
+        SubDAO subDAO = new SubDAO();
+        VisitorDAO visitorDAO = new VisitorDAO();
+        model.addAttribute("subs", subDAO.index());
+        model.addAttribute("visitors", visitorDAO.index());
         return "subsofvisitors/deletesubofvisitor";
     }
     @PostMapping("/deletesubofvisitor")

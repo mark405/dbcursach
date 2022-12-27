@@ -16,13 +16,23 @@
     <h2>Film voice</h2>
     <form th:action="@{/filmvoices/addfilmvoice}" method="POST" enctype="multipart/form-data" id="usrinput">
         <div class="user-box">
-            <input type="text" name="filmid" required="true">
-            <label>FilmID</label>
+            <select name="filmid">
+                <option th:each="film : ${films}" th:value="${film.getId()}" th:text="${film.getTitle()}"></option>
+            </select>
         </div>
         <div class="user-box">
-            <input type="text" name="voiceid" required="true">
-            <label>VoiceID</label>
+            <select name="voiceid">
+                <option th:each="voice : ${voices}" th:value="${voice.getId()}" th:text="${voice.getTitle()}"></option>
+            </select>
         </div>
+<!--        <div class="user-box">-->
+<!--            <input type="text" name="filmid" required="true">-->
+<!--            <label>FilmID</label>-->
+<!--        </div>-->
+<!--        <div class="user-box">-->
+<!--            <input type="text" name="voiceid" required="true">-->
+<!--            <label>VoiceID</label>-->
+<!--        </div>-->
 
 
         <button role="button" type="submit">

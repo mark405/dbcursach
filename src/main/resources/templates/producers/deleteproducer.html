@@ -14,8 +14,9 @@
     <h2>Producer</h2>
     <form th:action="@{/producers/deleteproducer}" method="POST" enctype="multipart/form-data" id="usrinput">
         <div class="user-box">
-            <input type="text" name="id" required="true">
-            <label>ID</label>
+            <select name="id">
+                <option th:each="producer : ${producers}" th:value="${producer.getId()}" th:text="${producer.getId()}"></option>
+            </select>
         </div>
         <button role="button" type="submit">
             <span></span>

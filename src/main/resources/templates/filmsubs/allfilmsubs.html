@@ -15,14 +15,14 @@
     <table class="styled-table">
         <thead>
         <tr>
-            <th>FilmID</th>
-            <th>SubID</th>
+            <th>Film</th>
+            <th>Sub</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="filmsub : ${filmsubs}">
-            <td th:text="${filmsub.getFilmId()}">filmid</td>
-            <td th:text="${filmsub.getSubId()}">subid</td>
+            <td th:text="${filmsub.getFilm()}">filmid</td>
+            <td th:text="${filmsub.getSub()}">subid</td>
         </tr>
         </tbody>
     </table>

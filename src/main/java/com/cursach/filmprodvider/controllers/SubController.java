@@ -47,6 +47,7 @@ public class SubController {
 
     @GetMapping("/deletesub")
     public String deleteSub(Model model) {
+        model.addAttribute("subs", subDAO.index());
         return "subs/deletesub";
     }
     @PostMapping("/deletesub")

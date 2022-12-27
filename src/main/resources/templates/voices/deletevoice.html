@@ -14,8 +14,9 @@
     <h2>Voice</h2>
     <form th:action="@{/voices/deletevoice}" method="POST" enctype="multipart/form-data" id="usrinput">
         <div class="user-box">
-            <input type="text" name="id" required="true">
-            <label>ID</label>
+            <select name="id">
+                <option th:each="voice : ${voices}" th:value="${voice.getId()}" th:text="${voice.getId()}"></option>
+            </select>
         </div>
         <button role="button" type="submit">
             <span></span>

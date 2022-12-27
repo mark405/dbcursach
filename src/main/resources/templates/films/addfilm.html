@@ -20,8 +20,9 @@
             <label>Title</label>
         </div>
         <div class="user-box">
-            <input type="text" name="genre" required="true">
-            <label>Genre</label>
+            <select name="genre">
+                <option th:each="genre : ${genres}" th:value="${genre.getId()}" th:text="${genre.getName()}"></option>
+            </select>
         </div>
         <div class="user-box">
             <input type="text" name="duration" required="true">
@@ -48,12 +49,14 @@
             <label>Seasons(>0)</label>
         </div>
         <div class="user-box">
-            <input type="text" name="producer" required="true">
-            <label>Producer</label>
+            <select name="producer">
+                <option th:each="producer : ${producers}" th:value="${producer.getId()}" th:text="${producer.getSurname()}"></option>
+            </select>
         </div>
         <div class="user-box">
-            <input type="text" name="scriptwriter" required="true">
-            <label>Scriptwriter</label>
+            <select name="scriptwriter">
+                <option th:each="scriptwriter : ${scriptwriters}" th:value="${scriptwriter.getId()}" th:text="${scriptwriter.getSurname()}"></option>
+            </select>
         </div>
         <div class="user-box">
             <input type="text" name="description" required="true">

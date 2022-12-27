@@ -47,6 +47,7 @@ public class ScriptWriterController {
 
     @GetMapping("/deletescriptwriter")
     public String deleteScriptWriter(Model model) {
+        model.addAttribute("scriptwriters", scriptWriterDAO.index());
         return "scriptwriters/deletescriptwriter";
     }
     @PostMapping("/deletescriptwriter")

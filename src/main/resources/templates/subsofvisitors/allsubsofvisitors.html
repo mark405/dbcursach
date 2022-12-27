@@ -15,8 +15,8 @@
     <table class="styled-table">
         <thead>
         <tr>
-            <th>SubID</th>
-            <th>VisitorID</th>
+            <th>Sub</th>
+            <th>Visitor</th>
             <th>Start</th>
             <th>End</th>
             <th>Status</th>
@@ -24,8 +24,8 @@
         </thead>
         <tbody>
         <tr th:each="visitorsub : ${subsofvisitors}">
-            <td th:text="${visitorsub.getSubId()}">sub</td>
-            <td th:text="${visitorsub.getVisitorId()}">visitor</td>
+            <td th:text="${visitorsub.getSub()}">sub</td>
+            <td th:text="${visitorsub.getVisitor()}">visitor</td>
             <td th:text="${visitorsub.getStart()}">start</td>
             <td th:text="${visitorsub.getEnd()}">end</td>
             <td th:text="${visitorsub.getStatus()}">status</td>

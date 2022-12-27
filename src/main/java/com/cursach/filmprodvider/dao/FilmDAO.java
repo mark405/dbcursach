@@ -18,7 +18,15 @@ public class FilmDAO extends TableBaseDao{
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM FilmCollection";
+//            String SQL = "SELECT * FROM FilmCollection JOIN Genres ON FilmCollection.Genre = Genres.GenreID";
+            String SQL = "SELECT FilmID, Title, Genres.Name, Duration, IssueYear, Rate, Cash, Episodes, Seasons, Producers.Surname, ScriptWriters.Surname, Description\n" +
+                    "FROM FilmCollection\n" +
+                    "INNER JOIN Genres ON\n" +
+                    "Genres.GenreID = FilmCollection.Genre\n" +
+                    "INNER JOIN Producers ON\n" +
+                    "Producers.ProducerID = FilmCollection.Producer\n" +
+                    "INNER JOIN ScriptWriters ON\n" +
+                    "ScriptWriters.ScriptWriterID = FilmCollection.ScriptWriter\n";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while(resultSet.next()) {
@@ -26,15 +34,15 @@ public class FilmDAO extends TableBaseDao{
 
                 film.setId(resultSet.getInt("FilmID"));
                 film.setTitle(resultSet.getString("Title"));
-                film.setGenre(resultSet.getInt("Genre"));
+                film.setGenre(resultSet.getString("Genres.Name"));
                 film.setDuration(resultSet.getString("Duration"));
                 film.setYear(resultSet.getString("IssueYear"));
                 film.setRate(resultSet.getInt("Rate"));
                 film.setCash(resultSet.getInt("Cash"));
                 film.setEpisodes(resultSet.getInt("Episodes"));
                 film.setSeasons(resultSet.getInt("Seasons"));
-                film.setProducer(resultSet.getInt("Producer"));
-                film.setScriptWriter(resultSet.getInt("ScriptWriter"));
+                film.setProducer(resultSet.getString("Producers.Surname"));
+                film.setScriptWriter(resultSet.getString("ScriptWriters.Surname"));
                 film.setDescription(resultSet.getString("Description"));
 
 
@@ -91,7 +99,15 @@ public class FilmDAO extends TableBaseDao{
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM FilmCollection ORDER BY Rate";
+            String SQL = "SELECT FilmID, Title, Genres.Name, Duration, IssueYear, Rate, Cash, Episodes, Seasons, Producers.Surname, ScriptWriters.Surname, Description\n" +
+                    "FROM FilmCollection\n" +
+                    "INNER JOIN Genres ON\n" +
+                    "Genres.GenreID = FilmCollection.Genre\n" +
+                    "INNER JOIN Producers ON\n" +
+                    "Producers.ProducerID = FilmCollection.Producer\n" +
+                    "INNER JOIN ScriptWriters ON\n" +
+                    "ScriptWriters.ScriptWriterID = FilmCollection.ScriptWriter\n" +
+                    "ORDER BY Rate";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while(resultSet.next()) {
@@ -99,15 +115,15 @@ public class FilmDAO extends TableBaseDao{
 
                 film.setId(resultSet.getInt("FilmID"));
                 film.setTitle(resultSet.getString("Title"));
-                film.setGenre(resultSet.getInt("Genre"));
+                film.setGenre(resultSet.getString("Genres.Name"));
                 film.setDuration(resultSet.getString("Duration"));
                 film.setYear(resultSet.getString("IssueYear"));
                 film.setRate(resultSet.getInt("Rate"));
                 film.setCash(resultSet.getInt("Cash"));
                 film.setEpisodes(resultSet.getInt("Episodes"));
                 film.setSeasons(resultSet.getInt("Seasons"));
-                film.setProducer(resultSet.getInt("Producer"));
-                film.setScriptWriter(resultSet.getInt("ScriptWriter"));
+                film.setProducer(resultSet.getString("Producers.Surname"));
+                film.setScriptWriter(resultSet.getString("ScriptWriters.Surname"));
                 film.setDescription(resultSet.getString("Description"));
 
 
@@ -125,7 +141,15 @@ public class FilmDAO extends TableBaseDao{
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM FilmCollection ORDER BY Cash";
+            String SQL = "SELECT FilmID, Title, Genres.Name, Duration, IssueYear, Rate, Cash, Episodes, Seasons, Producers.Surname, ScriptWriters.Surname, Description\n" +
+                    "FROM FilmCollection\n" +
+                    "INNER JOIN Genres ON\n" +
+                    "Genres.GenreID = FilmCollection.Genre\n" +
+                    "INNER JOIN Producers ON\n" +
+                    "Producers.ProducerID = FilmCollection.Producer\n" +
+                    "INNER JOIN ScriptWriters ON\n" +
+                    "ScriptWriters.ScriptWriterID = FilmCollection.ScriptWriter\n" +
+                    "ORDER BY Cash";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while(resultSet.next()) {
@@ -133,15 +157,15 @@ public class FilmDAO extends TableBaseDao{
 
                 film.setId(resultSet.getInt("FilmID"));
                 film.setTitle(resultSet.getString("Title"));
-                film.setGenre(resultSet.getInt("Genre"));
+                film.setGenre(resultSet.getString("Genres.Name"));
                 film.setDuration(resultSet.getString("Duration"));
                 film.setYear(resultSet.getString("IssueYear"));
                 film.setRate(resultSet.getInt("Rate"));
                 film.setCash(resultSet.getInt("Cash"));
                 film.setEpisodes(resultSet.getInt("Episodes"));
                 film.setSeasons(resultSet.getInt("Seasons"));
-                film.setProducer(resultSet.getInt("Producer"));
-                film.setScriptWriter(resultSet.getInt("ScriptWriter"));
+                film.setProducer(resultSet.getString("Producers.Surname"));
+                film.setScriptWriter(resultSet.getString("ScriptWriters.Surname"));
                 film.setDescription(resultSet.getString("Description"));
 
 
@@ -159,7 +183,15 @@ public class FilmDAO extends TableBaseDao{
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM FilmCollection ORDER BY Rate DESC";
+            String SQL = "SELECT FilmID, Title, Genres.Name, Duration, IssueYear, Rate, Cash, Episodes, Seasons, Producers.Surname, ScriptWriters.Surname, Description\n" +
+                    "FROM FilmCollection\n" +
+                    "INNER JOIN Genres ON\n" +
+                    "Genres.GenreID = FilmCollection.Genre\n" +
+                    "INNER JOIN Producers ON\n" +
+                    "Producers.ProducerID = FilmCollection.Producer\n" +
+                    "INNER JOIN ScriptWriters ON\n" +
+                    "ScriptWriters.ScriptWriterID = FilmCollection.ScriptWriter\n" +
+                    "ORDER BY Rate DESC";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while(resultSet.next()) {
@@ -167,15 +199,15 @@ public class FilmDAO extends TableBaseDao{
 
                 film.setId(resultSet.getInt("FilmID"));
                 film.setTitle(resultSet.getString("Title"));
-                film.setGenre(resultSet.getInt("Genre"));
+                film.setGenre(resultSet.getString("Genres.Name"));
                 film.setDuration(resultSet.getString("Duration"));
                 film.setYear(resultSet.getString("IssueYear"));
                 film.setRate(resultSet.getInt("Rate"));
                 film.setCash(resultSet.getInt("Cash"));
                 film.setEpisodes(resultSet.getInt("Episodes"));
                 film.setSeasons(resultSet.getInt("Seasons"));
-                film.setProducer(resultSet.getInt("Producer"));
-                film.setScriptWriter(resultSet.getInt("ScriptWriter"));
+                film.setProducer(resultSet.getString("Producers.Surname"));
+                film.setScriptWriter(resultSet.getString("ScriptWriters.Surname"));
                 film.setDescription(resultSet.getString("Description"));
 
 
@@ -193,7 +225,15 @@ public class FilmDAO extends TableBaseDao{
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM FilmCollection ORDER BY Cash DESC";
+            String SQL = "SELECT FilmID, Title, Genres.Name, Duration, IssueYear, Rate, Cash, Episodes, Seasons, Producers.Surname, ScriptWriters.Surname, Description\n" +
+                    "FROM FilmCollection\n" +
+                    "INNER JOIN Genres ON\n" +
+                    "Genres.GenreID = FilmCollection.Genre\n" +
+                    "INNER JOIN Producers ON\n" +
+                    "Producers.ProducerID = FilmCollection.Producer\n" +
+                    "INNER JOIN ScriptWriters ON\n" +
+                    "ScriptWriters.ScriptWriterID = FilmCollection.ScriptWriter\n" +
+                    "ORDER BY Cash DESC";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while(resultSet.next()) {
@@ -201,15 +241,15 @@ public class FilmDAO extends TableBaseDao{
 
                 film.setId(resultSet.getInt("FilmID"));
                 film.setTitle(resultSet.getString("Title"));
-                film.setGenre(resultSet.getInt("Genre"));
+                film.setGenre(resultSet.getString("Genres.Name"));
                 film.setDuration(resultSet.getString("Duration"));
                 film.setYear(resultSet.getString("IssueYear"));
                 film.setRate(resultSet.getInt("Rate"));
                 film.setCash(resultSet.getInt("Cash"));
                 film.setEpisodes(resultSet.getInt("Episodes"));
                 film.setSeasons(resultSet.getInt("Seasons"));
-                film.setProducer(resultSet.getInt("Producer"));
-                film.setScriptWriter(resultSet.getInt("ScriptWriter"));
+                film.setProducer(resultSet.getString("Producers.Surname"));
+                film.setScriptWriter(resultSet.getString("ScriptWriters.Surname"));
                 film.setDescription(resultSet.getString("Description"));
 
 
