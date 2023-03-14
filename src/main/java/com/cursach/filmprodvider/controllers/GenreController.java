@@ -1,7 +1,6 @@
 package com.cursach.filmprodvider.controllers;
 
 import com.cursach.filmprodvider.dao.GenreDAO;
-import com.cursach.filmprodvider.models.Genre;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,15 +28,6 @@ public class GenreController {
         model.addAttribute("genres", genreDAO.index());
         return "genres/allgenres";
     }
-
-//    @PostMapping
-//    public String deleteGenre(Model model, HttpServletRequest request) {
-//        String id = request.getParameter("id");
-//        req.get
-//        System.out.println(id);
-//        genreDAO.delete(id);
-//        return "redirect:/genres";
-//    }
 
     @GetMapping("/addgenre")
     public String addGenre(Model model) {
